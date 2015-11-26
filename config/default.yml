@@ -1,0 +1,17 @@
+default: &default
+  boot:
+    scan:
+      directories:
+        - app/models
+        - app/resources
+        - app/
+development:
+  <<: *default
+test:
+  <<: *default
+qa:
+  <<: *default
+stagging:
+  <<: *default
+production:
+  <<: *default
