@@ -2,9 +2,6 @@
 AllCops:
   Excludes:
     - db/**
-    # - config/database.rb
-    # - config/apps.rb
-    # - restful-api
 Documentation:
   Enabled: false
 
