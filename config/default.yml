@@ -8,8 +8,8 @@ default: &default
         - app/entities/params
         - app/middlewares
         - app/models
-        - app/helpers
         - app/providers
+        - app/helpers
         - app/apis
         - app/
   apis:

@@ -3,6 +3,18 @@ module RESTFul
     format :json
     prefix :api
 
+    @@redis_provider = nil
+
+    helpers do
+      def logger
+        API.logger
+      end
+
+      def redis_provider
+        @@redis_provider ||= Providers::RedisProvider.new logger
+      end
+    end
+
     use Middlewares::Auth
 
     rescue_from ActiveRecord::RecordNotFound do

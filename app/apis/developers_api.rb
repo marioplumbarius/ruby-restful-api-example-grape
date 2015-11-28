@@ -33,13 +33,15 @@ module Developers
       params do
         requires :id, type: Integer, desc: 'the id of the developer', documentation: { param_type: 'path' }
       end
-      get ':id', requirements: { id: @@id_requirement } do
-        @developer = Providers::RedisProvider.get "#{@@cache_key_prefix}#{params[:id]}"
+      get ':id', requirements: { id: id_requirement } do
+        @developer = redis_provider.get "#{cache_key_prefix}#{params[:id]}"
 
         if @developer.blank?
           @developer = Developer.find(params[:id])
 
-          Providers::RedisProvider.set "#{@@cache_key_prefix}#{params[:id]}", @developer, @@cache_expiration
+          redis_provider.set "#{cache_key_prefix}#{params[:id]}", @developer.to_json, cache_expiration
+        else
+          @developer = JSON.parse @developer
         end
 
         @developer
@@ -50,11 +52,11 @@ module Developers
         optional :all, using: Entities::Params::Developer.documentation
         requires :id, type: Integer, desc: 'the id of the developer', documentation: { param_type: 'path' }
       end
-      patch ':id', requirements: { id: @@id_requirement } do
+      patch ':id', requirements: { id: id_requirement } do
         @developer = Developer.update(params[:id], params)
 
         if @developer.valid?
-          Providers::RedisProvider.del "#{@@cache_key_prefix}#{params[:id]}"
+          redis_provider.del "#{cache_key_prefix}#{params[:id]}"
           status 204
         else
           fail ActiveRecord::RecordInvalid, @developer
@@ -65,13 +67,13 @@ module Developers
       params do
         requires :id, type: Integer, desc: 'the id of the developer', documentation: { param_type: 'path' }
       end
-      delete ':id', requirements: { id: @@id_requirement } do
+      delete ':id', requirements: { id: id_requirement } do
         number_affected_rows = Developer.delete(params[:id])
 
         if number_affected_rows == 0
           status 404
         else
-          Providers::RedisProvider.del "#{@@cache_key_prefix}#{params[:id]}"
+          redis_provider.del "#{cache_key_prefix}#{params[:id]}"
           status 204
         end
       end
