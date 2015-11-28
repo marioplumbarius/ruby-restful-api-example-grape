@@ -1,27 +1,10 @@
 module Developers
   class API < Grape::API
     helpers PaginationHelper
+    helpers DevelopersCacheHelper
 
-    helpers do
-      def logger
-        API.logger
-      end
-
-      def id_requirement
-        /[0-9]*/
-      end
-
-      def cache_key_prefix
-        'developer:'
-      end
-
-      def cache_expiration
-        30
-      end
-
-      def redis_provider
-        @redis_provider ||= Providers::RedisProvider.new logger
-      end
+    def self.id_requirement
+      /[0-9]*/
     end
 
     resource :developers do

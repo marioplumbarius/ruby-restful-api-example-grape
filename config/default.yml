@@ -23,6 +23,9 @@ default: &default
         default: 10
       page:
         default: 0
+    developers_helper:
+      cache_key_prefix: 'developer:'
+      cache_expiration: 30
 development:
   <<: *default
 test:
