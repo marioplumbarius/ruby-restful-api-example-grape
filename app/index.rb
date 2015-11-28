@@ -1,3 +1,5 @@
+# rubocop:disable Style/ClassVars
+
 module RESTFul
   class API < Grape::API
     format :json
