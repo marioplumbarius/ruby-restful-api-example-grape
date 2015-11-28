@@ -5,7 +5,6 @@ ruby '2.2.3'
 gem 'sqlite3'
 gem 'redis'
 gem 'faker'
-gem 'redis'
 
 # frakework related libraries
 gem 'grape'
