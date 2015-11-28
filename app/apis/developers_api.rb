@@ -1,7 +1,8 @@
 module Developers
   class API < Grape::API
-    helpers PaginationHelper
+    helpers PaginationParamsHelper
     helpers DevelopersCacheHelper
+    helpers PaginationResponseHelper
 
     def self.id_requirement
       /[0-9]*/
@@ -14,9 +15,9 @@ module Developers
         use :pagination
       end
       get '/' do
-        @developers = Developer.page(params[:page]).per(params[:per_page])
+        @developers = Developer.limit(params[:per_page]).offset(params[:page]*params[:per_page])
 
-        @developers
+        paginate @developers, params[:page], params[:per_page], @developers.count
       end
 
       desc 'Creates a new developer'
