@@ -19,13 +19,16 @@ default: &default
       enabled: false
   helpers:
     pagination_helper:
-      per_page:
-        default: 10
-      page:
-        default: 0
+      per_page: 10
+      max_per_page: 30
     developers_helper:
       cache_key_prefix: 'developer:'
       cache_expiration: 30
+  middlewares:
+    auth:
+      credentials:
+        marioluan: '123456'
+        joaosilva: abcdef
 development:
   <<: *default
 test:
