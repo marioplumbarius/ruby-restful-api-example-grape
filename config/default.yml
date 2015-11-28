@@ -2,9 +2,27 @@ default: &default
   boot:
     scan:
       directories:
+        - config/initializers
+        - app/formatters
+        - app/entities
+        - app/entities/params
+        - app/middlewares
         - app/models
-        - app/resources
+        - app/helpers
+        - app/providers
+        - app/apis
         - app/
+  apis:
+    developers:
+      enabled: true
+    projects:
+      enabled: false
+  helpers:
+    pagination_helper:
+      per_page:
+        default: 10
+      page:
+        default: 0
 development:
   <<: *default
 test:
