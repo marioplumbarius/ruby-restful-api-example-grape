@@ -8,7 +8,4 @@ module DevelopersCacheHelper
     APP_CONFIG['helpers']['developers_helper']['cache_expiration']
   end
 
-  # def redis_provider
-  #   Providers::RedisProvider.new logger
-  # end
 end

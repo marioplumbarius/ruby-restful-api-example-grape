@@ -31,7 +31,6 @@ module RESTFul
       error!({ errors: errors }, 400)
     end
 
-    # mounting available apis
     mount Developers::API if APP_CONFIG['apis']['developers']['enabled']
     mount Projects::API if APP_CONFIG['apis']['projects']['enabled']
 
