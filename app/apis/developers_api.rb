@@ -1,23 +1,28 @@
 module Developers
   class API < Grape::API
-    helpers PaginationParamsHelper
     helpers DevelopersCacheHelper
-    helpers PaginationResponseHelper
+    include Grape::Kaminari
 
     def self.id_requirement
       /[0-9]*/
     end
 
+    def self.per_page
+      APP_CONFIG['helpers']['pagination_helper']['per_page']
+    end
+
+    def self.max_per_page
+      APP_CONFIG['helpers']['pagination_helper']['max_per_page']
+    end
+
     resource :developers do
 
+      paginate per_page: per_page, max_per_page: per_page, offset: 0
       desc 'Returns all developers', entity: Entities::Developer, is_array: true
-      params do
-        use :pagination
-      end
       get '/' do
-        @developers = Developer.limit(params[:per_page]).offset(params[:page]*params[:per_page])
+        @developers = Developer.page(params[:page]).per(params[:per_page])
 
-        paginate @developers, params[:page], params[:per_page], @developers.count
+        paginate @developers
       end
 
       desc 'Creates a new developer'
