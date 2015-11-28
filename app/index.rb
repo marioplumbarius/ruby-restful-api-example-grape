@@ -5,6 +5,10 @@ module RESTFul
     format :json
     prefix :api
 
+    use Rack::Auth::Basic do |username, password|
+      APP_CONFIG['middlewares']['auth']['credentials'][username] && APP_CONFIG['middlewares']['auth']['credentials'][username] == password
+    end
+
     @@redis_provider = nil
 
     helpers do
@@ -16,8 +20,6 @@ module RESTFul
         @@redis_provider ||= Providers::RedisProvider.new logger
       end
     end
-
-    use Middlewares::Auth
 
     rescue_from ActiveRecord::RecordNotFound do
       error!(nil, 404)
