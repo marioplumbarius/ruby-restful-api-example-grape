@@ -1,7 +1,12 @@
 module Developers
   class API < Grape::API
     helpers DevelopersCacheHelper
+    extend AuthHelper
     include Grape::Kaminari
+
+    use Rack::Auth::Basic do |username, password|
+      credentials_valid? username, password
+    end
 
     def self.id_requirement
       /[0-9]*/
@@ -32,7 +37,7 @@ module Developers
       post '/' do
         @developer = Developer.new(params)
 
-        @developer.save!
+        { id: @developer.id } if @developer.save!
       end
 
       desc 'Returns the developer with the provided :id', entity: Entities::Developer
@@ -59,7 +64,10 @@ module Developers
         requires :id, type: Integer, desc: 'the id of the developer', documentation: { param_type: 'path' }
       end
       patch ':id', requirements: { id: id_requirement } do
-        @developer = Developer.update(params[:id], params)
+        @body = params.except(:id)
+        error! nil, 400 if @body.empty?
+
+        @developer = Developer.update(params[:id], @body)
 
         if @developer.valid?
           redis_provider.del "#{cache_key_prefix}#{params[:id]}"

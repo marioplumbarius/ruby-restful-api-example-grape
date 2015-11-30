@@ -13,6 +13,7 @@ gem 'email_validator'
 gem 'grape-entity'
 gem 'grape-swagger'
 gem 'grape-kaminari'
+gem 'grape_logging'
 
 # single envs
 group :test do

@@ -5,9 +5,9 @@ module RESTFul
     format :json
     prefix :api
 
-    use Rack::Auth::Basic do |username, password|
-      APP_CONFIG['middlewares']['auth']['credentials'][username] && APP_CONFIG['middlewares']['auth']['credentials'][username] == password
-    end
+    API.logger.formatter = GrapeLogging::Formatters::Default.new
+    API.logger.level = APP_CONFIG['logger']['level']['default']
+    use GrapeLogging::Middleware::RequestLogger, logger: logger
 
     @@redis_provider = nil
 

@@ -75,6 +75,8 @@ GEM
     grape-swagger (0.10.2)
       grape (>= 0.8.0)
       grape-entity
+    grape_logging (1.1.2)
+      grape
     hashie (3.4.3)
     hashie-forbidden_attributes (0.1.1)
       hashie (>= 3.0)
@@ -183,6 +185,7 @@ DEPENDENCIES
   grape-entity
   grape-kaminari
   grape-swagger
+  grape_logging
   pry-byebug
   rack-test
   redis

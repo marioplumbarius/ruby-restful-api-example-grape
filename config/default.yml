@@ -9,6 +9,7 @@ default: &default
         - app/middlewares
         - app/models
         - app/providers
+        - app/helpers/http
         - app/helpers
         - app/apis
         - app/
@@ -29,10 +30,16 @@ default: &default
       credentials:
         marioluan: '123456'
         joaosilva: abcdef
+  logger:
+    level:
+      default: 0
 development:
   <<: *default
 test:
   <<: *default
+  logger:
+    level:
+      default: 5
 qa:
   <<: *default
 stagging:

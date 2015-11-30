@@ -1,0 +1,25 @@
+module HttpExecutorHelper
+  extend Rack::Test::Methods
+
+  def self.execute_request(http_method, url='/', body={})
+    case http_method
+    when 'PUT'
+      put url, body
+    when 'POST'
+      post url, body
+    when 'PATCH'
+      patch url, body
+    when 'DELETE'
+      delete url
+    when 'GET'
+      get url
+    else
+      fail ArgumentError, "#{http_method} does not exist"
+    end
+
+    {
+      last_response: last_response,
+      last_request: last_request
+    }
+  end
+end

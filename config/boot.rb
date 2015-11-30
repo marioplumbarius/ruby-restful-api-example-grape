@@ -7,7 +7,7 @@ APP_ROOT = File.expand_path('../..', __FILE__) unless defined?(APP_ROOT)
 # loads our dependencies
 Bundler.require(:default, RACK_ENV)
 
-# loads our configurario
+# loads our configurarion
 APP_CONFIG = YAML.load_file(File.join(__dir__, 'default.yml'))[RACK_ENV]
 
 # loads all files needed from our app
