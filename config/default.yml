@@ -33,6 +33,11 @@ default: &default
   logger:
     level:
       default: 0
+  swagger:
+    info:
+      title: RESTFul API
+      description: Example of a restful api using grape framework.
+      contact: mariosouzaluan@gmail.com
 development:
   <<: *default
 test:

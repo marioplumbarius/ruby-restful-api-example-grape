@@ -38,6 +38,14 @@ module RESTFul
     mount Developers::API if APP_CONFIG['apis']['developers']['enabled']
     mount Projects::API if APP_CONFIG['apis']['projects']['enabled']
 
-    add_swagger_documentation
+    add_swagger_documentation(
+      hide_format: true,
+      info:
+      {
+        title: APP_CONFIG['swagger']['info']['title'],
+        description: APP_CONFIG['swagger']['info']['description'],
+        contact: APP_CONFIG['swagger']['info']['contact']
+      }
+    )
   end
 end
