@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 # loads all required dependencies, files and configuration
-RACK_ENV = 'development' unless defined?(RACK_ENV)
+RACK_ENV = ENV['RACK_ENV'] ||= 'development' unless defined?(RACK_ENV)
 require File.expand_path('../config/boot.rb', __FILE__)
 
 use ActiveRecord::ConnectionAdapters::ConnectionManagement
