@@ -1,7 +1,7 @@
 describe Developer, type: :model do
   it { is_expected.to validate_presence_of(:name) }
 
-  # there is a open bug related to the following validation, so I'm keeping it in pending state until the fix comes up
+  # there is an open bug related to the following validation, so I'm keeping it in pending state until the fix comes up
   # xit { is_expected.to validate_numericality_of(:age).only_integer }
   it { is_expected.to validate_presence_of(:age) }
   it { is_expected.to validate_numericality_of(:age).is_greater_than(0) }
