@@ -1,7 +1,7 @@
 # general
 AllCops:
-  Excludes:
-    - db/**
+  Exclude:
+    - db/**/*
 Documentation:
   Enabled: false
 
