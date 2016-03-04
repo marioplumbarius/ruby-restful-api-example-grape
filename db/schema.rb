@@ -15,12 +15,14 @@ ActiveRecord::Schema.define(version: 20151126213651) do
 
   create_table "developers", force: :cascade do |t|
     t.string   "name",       null: false
+    t.string   "email",      null: false
     t.integer  "age",        null: false
     t.string   "github",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "developers", ["email"], name: "index_developers_on_email"
   add_index "developers", ["github"], name: "index_developers_on_github"
 
 end

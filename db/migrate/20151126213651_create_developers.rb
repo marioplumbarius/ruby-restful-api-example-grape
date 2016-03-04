@@ -4,6 +4,7 @@ class CreateDevelopers < ActiveRecord::Migration
       t.string :name, null: false
       t.string :email, null: false, index: true
       t.integer :age, null: false
+      t.string :github, null: false, index: true
       t.timestamps null: false
     end
   end
