@@ -2,7 +2,6 @@ default: &default
   boot:
     scan:
       directories:
-        - config/initializers
         - app/formatters
         - app/entities
         - app/entities/params
@@ -12,6 +11,7 @@ default: &default
         - app/helpers/http
         - app/helpers
         - app/apis
+        - lib/features
         - app/
   apis:
     developers:
