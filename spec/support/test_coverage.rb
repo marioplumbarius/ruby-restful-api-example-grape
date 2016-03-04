@@ -6,6 +6,7 @@ SimpleCov.configure do
 
   add_group 'APIs', ['app/apis', 'app/index.rb']
   add_group 'Entities', 'app/entities'
+  add_group 'Query Parameters', 'app/entities/params'
   add_group 'Formatters', 'app/formatters'
   add_group 'Helpers', 'app/helpers'
   add_group 'Middlewares', 'app/middlewares'
