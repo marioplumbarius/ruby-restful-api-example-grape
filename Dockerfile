@@ -28,6 +28,8 @@ WORKDIR /app
 # install project's dependencies
 RUN /bin/bash -l -c "bundle"
 
+# default command executed for the underlying image
 CMD /bin/bash -l -c "bundle exec rackup --host 0.0.0.0 -p 5000"
 
+# server
 EXPOSE 5000
