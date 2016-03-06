@@ -11,7 +11,7 @@
 ## build.image
 ```
 $ source .env-host
-$ docker build -t $APP_DOCKER_IMAGE_NAME
+$ docker build -t $APP_DOCKER_IMAGE_NAME .
 ```
 
 ## unit.tests
