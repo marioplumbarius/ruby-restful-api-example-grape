@@ -187,6 +187,7 @@ DEPENDENCIES
   grape-swagger
   grape_logging
   pry-byebug
+  rack
   rack-test
   redis
   rspec

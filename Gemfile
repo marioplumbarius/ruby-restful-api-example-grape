@@ -26,6 +26,7 @@ end
 
 group :development do
   gem 'rubocop', require: false
+  gem 'rack', require: false
   gem 'standalone_migrations'
 end
 
