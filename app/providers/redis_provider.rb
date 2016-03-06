@@ -2,7 +2,7 @@ module Providers
   class RedisProvider
 
     def initialize(logger)
-      @redis = Redis.new
+      @redis = Redis.new(:host => ENV['REDIS_HOST'], :port => ENV['REDIS_PORT'])
       @logger = logger
 
       @logger.debug 'initialized redis provided'
