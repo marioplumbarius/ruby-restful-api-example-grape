@@ -60,6 +60,7 @@ $ bundle exec rackup --host $APP_GUEST_HOST -p $APP_GUEST_PORT
 
 ## api.documentation (in development)
 Head over http://$APP_GUEST_HOST:$APP_GUEST_PORT/api/swagger_doc to see a JSON representation.
+
 Open http://petstore.swagger.io/?url=http://$APP_GUEST_HOST:$APP_GUEST_PORT/api/swagger_doc in your browser to navigate the documentation (remember to enable CORS if necessary).
 
 --
