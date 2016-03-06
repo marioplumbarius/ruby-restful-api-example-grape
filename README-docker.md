@@ -8,9 +8,6 @@
 [![Inline docs](http://inch-ci.org/github/marioluan/ruby-restful-api-example-grape.svg?branch=master)](http://inch-ci.org/github/marioluan/ruby-restful-api-example-grape)
 ***
 
-## pre.requisites:
-- docker-machine
-
 ## build.image
 ```
 $ source .env-host

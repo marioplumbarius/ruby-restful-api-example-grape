@@ -8,21 +8,74 @@
 [![Inline docs](http://inch-ci.org/github/marioluan/ruby-restful-api-example-grape.svg?branch=master)](http://inch-ci.org/github/marioluan/ruby-restful-api-example-grape)
 ***
 
-## dependencies
-- sqlite3 (v3.8.5)
-- redis (v3.0.0)
-- ruby (v2.2.3)
+***Note: Head over [README-docker.md](/README-docker.md) to run the application as a container.***
 
+## pre.requisites:
+* sqlite3 (v3.8.5)
+* redis (v3.0.0)
+* ruby (v2.2.3)
+
+## install.dependencies
+```
+$ bundle install
+```
+
+## unit.tests
+```
+$ bundle exec rspec
+```
+
+### code.coverage:
+Code coverage report is available at ./coverage/index.html. The report is updated every time unit tests are executed.
+
+## code.style:
+```
+$ bundle exec rubocop -S
+```
+
+## tasks & migrations:
+Tasks are defined inside ./lib/tasks directory. The only task we have today is a sample rake task and another one which loads active record tasks, such as migrations' tasks.
+```
+$ bundle exec rake -T
+```
+
+## run.application
+**load environment variables**
+```
+$ source .env-host
+```
+**start redis server**
+```
+$ redis-server
+```
+**run migrations**
+```
+$ bundle exec rake db:setup
+$ bundle exec rake db:migrate
+```
+**start application**
+```
+$ bundle exec rackup --host $APP_GUEST_HOST -p $APP_GUEST_PORT
+```
+
+## api.documentation (in development)
+Head over http://$APP_GUEST_HOST:$APP_GUEST_PORT/api/swagger_doc to see a JSON representation.
+Open http://petstore.swagger.io/?url=http://$APP_GUEST_HOST:$APP_GUEST_PORT/api/swagger_doc in your browser to navigate the documentation (remember to enable CORS if necessary).
+
+--
+
+# draft
 ## project.structure:
 TODO - describe what is the content from each package/folder
-### apis
-### entities
-#### params
-### formatters
-### helpers
-### middlewares
-### models
-### providers
+
+1. apis
+1. entities
+1. params
+1. formatters
+1. helpers
+1. middlewares
+1. models
+1. providers
 
 ## available.configuration:
 TODO - describe how the app can be configured:
@@ -33,69 +86,8 @@ TODO - describe how the app can be configured:
 - .travis.yml
 - etc
 
-## migrations:
-The following tasks must be run before starting the application.
-```
-$ rake db:setup
-$ rake db:migrate
-```
-
-## tasks:
-Tasks are defined inside ./lib/tasks directory. The only task we have today is an example rake task and another task which loads active record tasks, such as migrations' tasks.
-
-## unit.tests:
-```
-$ rspec
-```
-
-## code.coverage:
-Code coverage report is available at ./coverage/index.html. The report is updated every time unit tests are executed.
-
-## code.style:
-```shell
-$ rubocop -S
-```
-
 ## travis:
 TODO - explain content from .travis.yml and what happens when pushes are sent to master branch
 
 ## gems:
 TODO - talk about used gems, what motivated me to use them
-
-*Finally, let's run the app!*
-
-## run
-### from your local machine
-```
-$ rackaup
-```
-
-### from a docker container (see Dockerfile)
-**load environment variables**
-```
-$ source .env
-```
-**run the application**
-```
-$ docker run \
-    --rm \
-    -p ${APP_HOST_PORT}:${APP_GUEST_PORT}/tcp \
-    --name grape \
-    --entrypoint="/bin/bash" \
-    ruby/grape -l -c "bundle exec rackup --host ${APP_GUEST_HOST} -p ${APP_PORT}"
-```
-
-## test
-**load environment variables**
-```
-$ source .env
-```
-**run the unit tests**
-```
-$ docker run \
-    --rm \
-    -p ${APP_HOST_PORT}:${APP_GUEST_PORT}/tcp \
-    --name grape \
-    --entrypoint="/bin/bash" \
-    ruby/grape -l -c "bundle exec rspec"
-```
