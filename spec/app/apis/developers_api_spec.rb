@@ -118,7 +118,7 @@ describe Developers::API do
         expect(parsed_body['errors']['name']).to eq errors[:age]
       end
 
-      it 'returns missing error for :age field' do
+      it 'returns missing error for :github field' do
         parsed_body = JSON.parse(last_response.body)
         expect(parsed_body['errors']).to include 'github'
         expect(parsed_body['errors']['github']).to eq errors[:github]
