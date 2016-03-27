@@ -11,7 +11,7 @@
 ## build.image
 ```
 $ source .env-host
-$ docker build -t $APP_DOCKER_IMAGE_NAME .
+$ docker build -t $APP_IMAGE_NAME .
 ```
 
 ## unit.tests
@@ -22,7 +22,7 @@ $ docker run \
     -p $APP_HOST_PORT:$APP_GUEST_PORT/tcp \
     --name $APP_CONTAINER_NAME \
     --env-file .env-guest \
-    $APP_DOCKER_IMAGE_NAME bundle exec rspec
+    $APP_IMAGE_NAME bundle exec rspec
 ```
 
 ## code.style:
@@ -33,7 +33,7 @@ $ docker run \
     -p $APP_HOST_PORT:$APP_GUEST_PORT/tcp \
     --name $APP_CONTAINER_NAME \
     --env-file .env-guest \
-    $APP_DOCKER_IMAGE_NAME bundle exec rubocop -S
+    $APP_IMAGE_NAME bundle exec rubocop -S
 ```
 
 ## tasks & migrations:
@@ -44,7 +44,7 @@ $ docker run \
     -p $APP_HOST_PORT:$APP_GUEST_PORT/tcp \
     --name $APP_CONTAINER_NAME \
     --env-file .env-guest \
-    $APP_DOCKER_IMAGE_NAME bundle exec rake -T
+    $APP_IMAGE_NAME bundle exec rake -T
 ```
 
 ## run.container
@@ -64,5 +64,5 @@ $ docker run \
     --name $APP_CONTAINER_NAME \
     --link $REDIS_CONTAINER_NAME:redis \
     --env-file .env-guest \
-    $APP_DOCKER_IMAGE_NAME bundle exec rackup --host $APP_GUEST_HOST -p $APP_GUEST_PORT
+    $APP_IMAGE_NAME bundle exec rackup --host $APP_GUEST_HOST -p $APP_GUEST_PORT
 ```
