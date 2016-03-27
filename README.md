@@ -13,7 +13,7 @@
 ## pre.requisites:
 * sqlite3 (v3.8.5)
 * redis (v3.0.0)
-* ruby (v2.2.3)
+* ruby (v2.2.4)
 
 ## install.dependencies
 ```
