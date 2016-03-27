@@ -35,6 +35,7 @@ default: &default
   logger:
     level:
       default: 0
+    filepath: /dev/null
   features:
     cache:
       enabled: false
@@ -50,6 +51,7 @@ test:
   logger:
     level:
       default: 5
+    filepath: /dev/null
 qa:
   <<: *default
 stagging:

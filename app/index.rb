@@ -5,15 +5,13 @@ module RESTFul
     format :json
     prefix :api
 
-    API.logger.formatter = GrapeLogging::Formatters::Default.new
-    API.logger.level = APP_CONFIG['logger']['level']['default']
-    use GrapeLogging::Middleware::RequestLogger, logger: logger
+    use GrapeLogging::Middleware::RequestLogger, logger: APP_CONFIG['LOGGER']
 
     @@redis_provider = nil
 
     helpers do
       def logger
-        API.logger
+        APP_CONFIG['LOGGER']
       end
 
       def redis_provider

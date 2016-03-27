@@ -14,6 +14,9 @@ APP_CONFIG = YAML.load_file(File.join(__dir__, 'default.yml'))[RACK_ENV]
 # connects to database
 Grape::ActiveRecord.configure_from_file! APP_CONFIG['db']['location']
 
+# configures logging
+require_relative 'logging'
+
 # loads all files needed from our app
 dirs_to_load = APP_CONFIG['boot']['scan']['directories']
 
