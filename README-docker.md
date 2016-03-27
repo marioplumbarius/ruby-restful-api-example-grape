@@ -54,7 +54,7 @@ $ source .env-host
 ```
 **start redis server**
 ```
-$ docker run --name $REDIS_CONTAINER_NAME -p $REDIS_PORT:$REDIS_PORT -d redis
+$ docker run --name $REDIS_CONTAINER_NAME -p $REDIS_PORT:$REDIS_PORT -d $REDIS_IMAGE_NAME
 ```
 **start application**
 ```
