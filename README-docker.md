@@ -22,8 +22,7 @@ $ docker run \
     -p $APP_HOST_PORT:$APP_GUEST_PORT/tcp \
     --name $APP_CONTAINER_NAME \
     --env-file .env-guest \
-    --entrypoint="/bin/bash" \
-    $APP_DOCKER_IMAGE_NAME -l -c "bundle exec rspec"
+    $APP_DOCKER_IMAGE_NAME bundle exec rspec
 ```
 
 ## code.style:
@@ -34,8 +33,7 @@ $ docker run \
     -p $APP_HOST_PORT:$APP_GUEST_PORT/tcp \
     --name $APP_CONTAINER_NAME \
     --env-file .env-guest \
-    --entrypoint="/bin/bash" \
-    $APP_DOCKER_IMAGE_NAME -l -c "bundle exec rubocop -S"
+    $APP_DOCKER_IMAGE_NAME bundle exec rubocop -S
 ```
 
 ## tasks & migrations:
@@ -46,8 +44,7 @@ $ docker run \
     -p $APP_HOST_PORT:$APP_GUEST_PORT/tcp \
     --name $APP_CONTAINER_NAME \
     --env-file .env-guest \
-    --entrypoint="/bin/bash" \
-    $APP_DOCKER_IMAGE_NAME -l -c "bundle exec rake -T"
+    $APP_DOCKER_IMAGE_NAME bundle exec rake -T
 ```
 
 ## run.container
@@ -67,6 +64,5 @@ $ docker run \
     --name $APP_CONTAINER_NAME \
     --link $REDIS_CONTAINER_NAME:redis \
     --env-file .env-guest \
-    --entrypoint="/bin/bash" \
-    $APP_DOCKER_IMAGE_NAME -l -c "bundle exec rackup --host $APP_GUEST_HOST -p $APP_GUEST_PORT"
+    $APP_DOCKER_IMAGE_NAME bundle exec rackup --host $APP_GUEST_HOST -p $APP_GUEST_PORT
 ```
