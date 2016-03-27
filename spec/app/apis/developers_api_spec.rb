@@ -273,7 +273,7 @@ describe Developers::API do
           end
 
           it 'returns an empty body' do
-            expect(last_response.body).to eq 'null'
+            expect(last_response.body).to eq({error: nil}.to_json)
           end
 
           it 'does not cache it in redis' do

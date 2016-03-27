@@ -13,6 +13,8 @@ default: &default
         - app/apis
         - lib/features
         - app/
+  db:
+    location: config/database.yml
   apis:
     developers:
       enabled: true
