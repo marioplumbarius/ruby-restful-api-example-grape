@@ -3,11 +3,11 @@ services:
   web:
     build: .
     depends_on:
-      - $REDIS_HOST
+      - $REDIS_CONTAINER_NAME
     ports:
       - $APP_HOST_PORT:$APP_GUEST_PORT
     links:
-      - $REDIS_HOST
+      - $REDIS_CONTAINER_NAME
     env_file:
       - ./.env-guest
     logging:
