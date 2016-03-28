@@ -64,5 +64,5 @@ $ docker run \
     --name $APP_CONTAINER_NAME \
     --link $REDIS_CONTAINER_NAME:redis \
     --env-file .env-guest \
-    $APP_IMAGE_NAME bundle exec rackup --host $APP_GUEST_HOST -p $APP_GUEST_PORT
+    $APP_IMAGE_NAME
 ```
