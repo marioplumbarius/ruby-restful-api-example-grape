@@ -17,7 +17,7 @@
 
 ## install.dependencies
 ```
-$ bundle install
+$ bundle install --path vendor/bundle
 ```
 
 ## unit.tests
