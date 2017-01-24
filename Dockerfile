@@ -13,13 +13,17 @@ RUN apk add --update $NOKOGIRI_PACKAGES
 RUN apk add --update $SQLITE_PACKAGES
 
 # sets the working directory
-ADD . /app
 WORKDIR /app
 
 # builds the app
+ADD ./Gemfile /app/Gemfile
+ADD ./Gemfile.lock /app/Gemfile.lock
 # forces nokogiri to use the installed $NOKOGIRI_PACKAGES
 RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle install --path vendor/bundle
+
+# copy the whole project inside the image
+ADD . /app
 
 # default command executed for the underlying image
 CMD bundle exec rackup --host 0.0.0.0 -p 5000
